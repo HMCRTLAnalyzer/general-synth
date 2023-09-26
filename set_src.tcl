@@ -15,7 +15,7 @@ if {$::env(HDL_LANG) == "verilog"} {
 set src_files [glob -directory $src_dir $file_ext]
 
 # svf file contains info about how DC has tranformed names
-set_svf ./results/$DESIGN_NAME.svf
+set_svf ./$RESULTS_DIR/$DESIGN_NAME.svf
 define_design_lib WORK -path ./WORK
 analyze -format $::env(HDL_LANG) $src_files
 
