@@ -11,7 +11,7 @@
 This project aims to create a generalized synthesis flow for aiding the HMC RTL analysis efforts. 
 
 ## Prerequisites
-This project was developed on Rocky Linux 8.8 Green Obsidian.
+This project was developed on Rocky Linux 8.8 Green Obsidian. (Similar to RedHat)
 
 The tools used for these specific scripts require:
 - Synopsys Design Compiler
@@ -37,4 +37,4 @@ Additional optional parameters include:
 - HDL_LANG
 - CLK_PERIOD
 
-These have defaults set in the configun of the Makefile, but can be overriden with command line arguments. Eventually these options will be configurable using a configuration file with a Python wrapper.
+These have defaults set in the configuration of the Makefile, but can be overriden with command line arguments. Eventually these options will be configurable using a config file with a Python wrapper.
