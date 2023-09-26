@@ -26,7 +26,7 @@ ifndef SRC_PATH
 $(error SRC_PATH not set, please set in order to continue)
 endif
 
-RESULTS_DIR = ./$(DESIGN_NAME)_$(time)_results
+RESULTS_DIR = ./results_$(DESIGN_NAME)_$(time)
 
 synth:
 	export TECH_PATH=$(TECH_PATH) && \
