@@ -28,7 +28,7 @@ endif
 
 RESULTS_DIR = ./results_$(DESIGN_NAME)_$(time)
 
-synth:
+synth: clean_work
 	export TECH_PATH=$(TECH_PATH) && \
 	export MAX_AREA=$(MAX_AREA) && \
 	export DESIGN_NAME=$(DESIGN_NAME) && \
@@ -39,6 +39,10 @@ synth:
 	export HDL_LANG=$(HDL_LANG) && \
 	export RESULTS_DIR=$(RESULTS_DIR) && \
 	mkdir $(RESULTS_DIR) && \
-	dc_shell-xg-t -f synthesis.tcl | tee synth_$(DESIGN_NAME)_$(time).log
+	dc_shell-xg-t -f synthesis.tcl | tee $(RESULTS_DIR)/synthesis_run.log
 
-
+clean_work:
+	@if [ -d WORK ]; then \
+        echo "Deleting contents of WORK folder"; \
+        rm -rf WORK/*; \
+    fi
