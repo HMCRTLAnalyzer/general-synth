@@ -6,6 +6,7 @@ MAX_POWER ?= 0.0
 MAX_FANOUT ?= 0
 # HDL_LANG option is either verilog, sverilog, or vhdl. default to verilog unless set otherwise
 HDL_LANG ?= verilog
+EXPERIMENT_NAME ?= test
 
 # CLK_PERIOD is in nanoseconds
 CLK_PERIOD ?= 100.0
@@ -26,7 +27,7 @@ ifndef SRC_PATH
 $(error SRC_PATH not set, please set in order to continue)
 endif
 
-RESULTS_DIR = ./results_$(DESIGN_NAME)_$(time)
+RESULTS_DIR = ./results_$(DESIGN_NAME)_$(time)_$(EXPERIMENT_NAME)
 
 synth: clean_work
 	export TECH_PATH=$(TECH_PATH) && \
