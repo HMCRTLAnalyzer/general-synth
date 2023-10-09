@@ -1,0 +1,3 @@
+
+# ignore any folders with "results" in the name
+./*results*
