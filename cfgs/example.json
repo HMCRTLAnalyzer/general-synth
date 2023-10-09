@@ -1,0 +1,32 @@
+{
+    "test1":{
+        "name": "OpenMSP430",
+        "experimentName": "synthTest1",
+        "topModule": "openMSP430",
+        "tech": "sky130",
+        "language": "Verilog",
+        "srcPath": "./RTL/opencores-ip/core/rtl/verilog",
+        "extraParameter1": "Hi",
+        "synthParams": {
+            "maxPower": 10000,
+            "maxArea": 200000,
+            "maxFanout": 5,
+            "clkPeriod": 200
+        }
+    },
+    "test2": {
+        "name": "OpenMSP430",
+        "experimentName": "synthTest2",
+        "topModule": "openMSP430",
+        "tech": "sky130",
+        "language": "Verilog",
+        "srcPath": "./RTL/opencores-ip/core/rtl/verilog",
+        "extraParameter1": "Hi",
+        "synthParams": {
+            "maxPower": 10000,
+            "maxArea": 200000,
+            "maxFanout": 5,
+            "clkPeriod": 200
+        }
+    }
+}
