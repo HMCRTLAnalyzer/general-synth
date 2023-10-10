@@ -29,6 +29,7 @@ def genTestcase(name, experimentName, topModule, tech, language, srcPath, maxPow
 
 def main():
     testDict = {}
+    # Format for topmodule entry: [topModule, language, pathToSrc, [clk1, clk2, ...], ...]
     topModules = [["openMSP430", "Verilog", "./RTL/opencores-ip/core/rtl/verilog"]]
     techList = ["sky130"]
     testType = "constraintSweep"
