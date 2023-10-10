@@ -76,8 +76,6 @@ def main():
     testList = []
     for testcase in testcases:
         testList += [testcases[testcase]]
-    
-    pprint(testList)
 
     pool = Pool(processes=25)
     pool.map(runSynth, testList)
