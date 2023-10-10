@@ -1,5 +1,8 @@
 *.log
 
+# ignore any folders with "results" in the name
+/results_dir
+!.gitkeep
 /WORK
 
 # ignore pycache directory
