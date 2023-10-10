@@ -11,6 +11,7 @@
 import json
 import subprocess
 import argparse
+import os
 from multiprocessing import Pool, cpu_count
 from pprint import *
 
@@ -65,7 +66,7 @@ def runSynth(testcase):
     clkPeriod = synthDict["clkPeriod"]
     
     command = 'make synth TECH={} HDL_lang={} SRC_PATH={} DESIGN_NAME={} MAX_POWER={} MAX_AREA={} MAX_FANOUT={} CLK_PERIOD={} EXPERIMENT_NAME={}'.format(tech, language, srcPath, designName, maxPower, maxArea, maxFanout, clkPeriod, testName)
-    subprocess.Popen(command,shell=True)
+    os.system(command)
 
 
 def main():
@@ -73,15 +74,8 @@ def main():
     testcases = getTestcases(filename)
 
     # Decode testcases into list of dictionaries
-    testList = []
     for testcase in testcases:
-        testList += [testcases[testcase]]
-    
-    pprint(testList)
-
-    pool = Pool(processes=25)
-    pool.map(runSynth, testList)
-    pool.close()
+        runSynth(testcases[testcase])
 
 
 if __name__ == "__main__":

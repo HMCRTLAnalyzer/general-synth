@@ -26,6 +26,31 @@ Setting the configuration options in the Makefile is important to getting the sc
 
 To call the synthesis script, go to the `general-synth` directory and use the following:
 ```
+./run_synth.py ./cfgs/example.json
+```
+
+This will perform multiple synthesis runs on the testcases inside `./cfgs/example.json`. The results will be output into folders inside ./results_dir.
+
+If you would like to run synthesis on a different set of testcases, please change `./cfgs/example.json` to point to another JSON containing testcases.
+
+# Testcase generation
+
+To generate testcases, edit `gen_synth.py` to include all the parameter combinations you want, then go to `general-synth` and run
+
+```
+./gen_synth.py
+```
+
+This will generate a file under `./cfgs/{experimentName}.json`. You can now synthesize these cases by running
+
+```
+./run_synth.py ./cfgs/{experimentName}.json
+```
+
+## Direct Usage
+
+To call the synthesis script, go to the `general-synth` directory and use the following:
+```
 make synth DESIGN_NAME=<top module of HDL design> SRC_PATH=<path to source file directory>
 ```
 
