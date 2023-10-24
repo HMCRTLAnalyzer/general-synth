@@ -10,7 +10,7 @@
 import json
 from pprint import *
 
-def genTestcase(name, experimentName, topModule, tech, language, srcPath, maxPower, maxArea, maxFanout, clkPeriod, extraParameters):
+def genTestcase(name, experimentName, topModule, tech, language, srcPath, clkList, maxPower, maxArea, maxFanout, clkPeriod, extraParameters):
     # Function to generate a dictionary for a single testcase based on inputs
     testcase = {}
     testcase["name"] = name
@@ -19,6 +19,7 @@ def genTestcase(name, experimentName, topModule, tech, language, srcPath, maxPow
     testcase["tech"] = tech
     testcase["language"] = language
     testcase["srcPath"] = srcPath
+    testcase["clkSignalList"] = clkList
     testcase["extraParameters"] = extraParameters
     testcase["synthParams"] = {}
     testcase["synthParams"]["maxPower"]  = f"{maxPower}"
@@ -29,8 +30,12 @@ def genTestcase(name, experimentName, topModule, tech, language, srcPath, maxPow
 
 def main():
     testDict = {}
+<<<<<<< Updated upstream
     # Format for topmodule entry: [topModule, language, pathToSrc, [clk1, clk2, ...], ...]
     topModules = [["openMSP430", "Verilog", "./RTL/opencores-ip/core/rtl/verilog"]]
+=======
+    topModules = [["openMSP430", "Verilog", "./RTL/opencores-ip/core/rtl/verilog", ["dco_clk", "lfxt_clk"]]]
+>>>>>>> Stashed changes
     techList = ["sky130"]
     testType = "constraintSweep"
     powerList = [0, 100, 1000, 10000]
@@ -49,8 +54,9 @@ def main():
                             name = topModule[0]
                             language = topModule[1]
                             srcPath = topModule[2]
+                            clkList = topModule[3]
                             experimentName = f"{testType}_{topModule[0]}_{tech}_{maxPower}_{maxArea}_{maxFanout}_{clkPeriod}"
-                            testDict[experimentName] = genTestcase(name, experimentName, topModule[0], tech, language, srcPath, maxPower, maxArea, maxFanout, clkPeriod, extraParameters)
+                            testDict[experimentName] = genTestcase(name, experimentName, topModule[0], tech, language, srcPath, clkList, maxPower, maxArea, maxFanout, clkPeriod, extraParameters)
                             numTests += 1
 
     # Dump json file
