@@ -37,7 +37,7 @@ current_design $DESIGN_NAME
 change_name -rules verilog -hierarchy
 
 # write verilog netlist
-write -hierarchy -format verilog -output "$RESULTS_DIR/$DESIGN_NAME.netlist.v"
-write -hierarchy -format ddc     -output "$RESULTS_DIR/$DESIGN_NAME.ddc"
+write -hierarchy -format verilog -output "./$RESULTS_DIR/$DESIGN_NAME.netlist.v"
+write -hierarchy -format ddc     -output "./$RESULTS_DIR/$DESIGN_NAME.ddc"
 
 quit
