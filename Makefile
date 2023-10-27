@@ -28,7 +28,6 @@ $(error SRC_PATH not set, please set in order to continue)
 endif
 
 ifndef JSON
-$(error JSON NOT DEFINED)
 RESULTS_DIR = ./results_dir/results_$(DESIGN_NAME)_$(time)_$(EXPERIMENT_NAME)
 else
 RESULTS_DIR = ./results_dir/$(JSON)/results_$(DESIGN_NAME)_$(time)_$(EXPERIMENT_NAME)
