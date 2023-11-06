@@ -1,9 +1,13 @@
+#to use: change the "results_folderr" name to be the report folder you want to extract features from.
+#run file
+
 import re
 import pandas
 import datetime
 import os
 
-results_dir = "/home/nlimpert/clinic/general-synth/results_dir/qdiv_area_0_40k_2023-10-30-07-46"
+results_folder = "fft_gen_delay_sweep_2to40ns_2023-11-05-20-36"
+results_dir = f"../general-synth/results_dir/{results_folder}"
 sub_dir = next(os.walk(results_dir))[1]
 
 
