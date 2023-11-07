@@ -62,8 +62,11 @@ eval file copy -force [findFiles $src_dir    $file_ext]   {$RESULTS_DIR/rtl_file
 set src_files [glob -directory $RESULTS_DIR/rtl_files *]
 
 # if package is used, grab it for compile order
-if {$(PKG_FILENAME) != 0} {set pkg_files $RESULTS_DIR/rtl_files/$(PKG_FILENAME)}
-else {set pkg_files {}}
+if {$(PKG_FILENAME) != 0} {
+    set pkg_files $RESULTS_DIR/rtl_files/$(PKG_FILENAME)
+} else {
+    set pkg_files {}
+}
 
 
 # append list such that packages GO FIRST!!!
