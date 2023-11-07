@@ -19,9 +19,10 @@ set RESULTS_DIR $::env(RESULTS_DIR)
 set_fix_multiple_port_nets -all -buffer_constants
 
 # synthesize!
-compile
+compile_ultra
 
-# generate reports
+
+redirect -file ./$RESULTS_DIR/report.qor            {report_qor}
 redirect -file ./$RESULTS_DIR/report.timing         {check_timing}
 redirect -file ./$RESULTS_DIR/report.constraints    {report_constraints -all_violators -verbose}
 redirect -file ./$RESULTS_DIR/report.paths.max      {report_timing -path end  -delay max -max_paths 200 -nworst 2}

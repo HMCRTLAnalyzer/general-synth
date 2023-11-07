@@ -31,8 +31,12 @@ $(error SRC_PATH not set, please set in order to continue)
 endif
 export SRC_PATH
 
-
-export RESULTS_DIR = ./results_dir/results_$(DESIGN_NAME)_$(time)_$(EXPERIMENT_NAME)
+ifndef JSON
+RESULTS_DIR = ./results_dir/results_$(DESIGN_NAME)_$(time)_$(EXPERIMENT_NAME)
+else
+RESULTS_DIR = ./results_dir/$(JSON)/results_$(DESIGN_NAME)_$(time)_$(EXPERIMENT_NAME)
+endif
+export RESULTS_DIR
 
 synth: 
 	mkdir $(RESULTS_DIR) && \
