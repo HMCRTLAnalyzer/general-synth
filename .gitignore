@@ -1,7 +1,7 @@
 *.log
 
 # ignore any folders with "results" in the name
-/results_dir
+/results*
 !.gitkeep
 /WORK
 
