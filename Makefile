@@ -27,7 +27,11 @@ ifndef SRC_PATH
 $(error SRC_PATH not set, please set in order to continue)
 endif
 
+ifndef JSON
 RESULTS_DIR = ./results_dir/results_$(DESIGN_NAME)_$(time)_$(EXPERIMENT_NAME)
+else
+RESULTS_DIR = ./results_dir/$(JSON)/results_$(DESIGN_NAME)_$(time)_$(EXPERIMENT_NAME)
+endif
 
 synth: clean_work
 	export TECH_PATH=$(TECH_PATH) && \
