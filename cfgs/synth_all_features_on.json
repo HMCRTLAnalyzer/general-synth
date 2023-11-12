@@ -1,0 +1,20 @@
+{
+    "constraintSweep_wally_single_wallypipelinedcore_sky130_0_0_100_200": {
+        "name": "wallypipelinedcore",
+        "experimentName": "constraintSweep_wally_single_wallypipelinedcore_sky130_0_0_100_200",
+        "topModule": "wallypipelinedcore",
+        "tech": "sky130",
+        "language": "sverilog",
+        "srcPath": "../cvw/src",
+        "clkSignalList": [
+            "clk"
+        ],
+        "extraParameters": "",
+        "synthParams": {
+            "maxPower": "0",
+            "maxArea": "0",
+            "maxFanout": "100",
+            "clkPeriod": "200"
+        }
+    }
+}

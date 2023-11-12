@@ -56,6 +56,8 @@ def run_synth(testcase, JSON_name):
     src_path = testcase["srcPath"]
     design_name = testcase["topModule"]
     experiment_name = testcase["experimentName"]
+    config_path = testcase["configPath"]
+    package_name = testcase["packageName"]
     
     # synthParams decoding
     synth_dict = testcase["synthParams"]
@@ -64,7 +66,7 @@ def run_synth(testcase, JSON_name):
     max_fanout = synth_dict["maxFanout"]
     clk_period = synth_dict["clkPeriod"]
     
-    command = f"make synth TECH={tech} HDL_lang={language} SRC_PATH={src_path} DESIGN_NAME={design_name} MAX_POWER={max_power} MAX_AREA={max_area} MAX_FANOUT={max_fanout} CLK_PERIOD={clk_period} EXPERIMENT_NAME={experiment_name} JSON={JSON_name}"
+    command = f"make synth TECH={tech} HDL_lang={language} SRC_PATH={src_path} DESIGN_NAME={design_name} MAX_POWER={max_power} MAX_AREA={max_area} MAX_FANOUT={max_fanout} CLK_PERIOD={clk_period} EXPERIMENT_NAME={experiment_name} JSON={JSON_name} PKG_FILENAME={package_name} CONFIG_HEADERS_PATH={config_path}"
     os.system(command)
 
 

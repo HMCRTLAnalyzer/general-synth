@@ -3,11 +3,15 @@
         "name": "OpenMSP430",
         "experimentName": "synthTest1",
         "topModule": "openMSP430",
-        "clkSignalNames": ["dco_clk", "lfxt_clk"],
         "tech": "sky130",
-        "language": "Verilog",
+        "language": "verilog",
         "srcPath": "./RTL/opencores-ip/core/rtl/verilog",
-        "extraParameter1": "Hi",
+        "clkSignalList": [
+            "clk"
+        ],
+        "extraParameters": "some_parameter_here",
+        "configPath": "./RTL/opencores-ip/core/rtl/verilog",
+        "packageName": "0", 
         "synthParams": {
             "maxPower": 10000,
             "maxArea": 200000,
@@ -15,20 +19,24 @@
             "clkPeriod": 200
         }
     },
-    "test2": {
+    "test2":{
         "name": "OpenMSP430",
-        "experimentName": "synthTest2",
+        "experimentName": "synthTest1",
         "topModule": "openMSP430",
-        "clkSignalNames": ["dco_clk", "lfxt_clk"],
         "tech": "sky130",
-        "language": "Verilog",
+        "language": "verilog",
         "srcPath": "./RTL/opencores-ip/core/rtl/verilog",
-        "extraParameter1": "Hi",
+        "clkSignalList": [
+            "clk"
+        ],
+        "extraParameters": "some_parameter_here",
+        "configPath": "./RTL/opencores-ip/core/rtl/verilog",
+        "packageName": "0", 
         "synthParams": {
             "maxPower": 10000,
-            "maxArea": 200000,
+            "maxArea": 1000,
             "maxFanout": 5,
-            "clkPeriod": 200
+            "clkPeriod": 100
         }
     }
 }
