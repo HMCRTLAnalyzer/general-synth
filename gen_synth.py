@@ -36,17 +36,12 @@ def main():
 
     # Format for topmodule entry: [topModule, language, pathToSrc, [clk1, clk2, ...], configPath, packageName, ...]
     topModules = [["wallypipelinedcorewrapper", "sverilog", "../cvw/src", ["clk"], "../cvw/config", "cvw.sv"]]
-    
     techList = ["sky130"]
-    testType = "constraintSweep_wally_sweep"
+    testType = "constraintSweep_wally_sweep_testinggen"
     powerList = [0]
     areaList = ["0", "80000"]
     fanoutList = ["0", "100"]
     clkPeriodList = ["1000", "500", "250", "125", "50", "10", "8.0", "7.0", "6.0", "5.0", "4.0"]
-    # powerList = [0]
-    # areaList = ["0"]
-    # fanoutList = ["100"]
-    # clkPeriodList = ["1000"]
     extraParameters = ""
 
     """USER MODIFICATION SECTION END"""
@@ -65,8 +60,10 @@ def main():
                             clkList = topModule[3]
                             configPath = topModule[4]
                             packageName =  topModule[5]
-                            if not packageName: # check for empty string in definition
+                            if packageName == "": # check for empty string in definition
                                 packageName = "0" # default needs to be 0 for design compiler checking
+                            if configPath == "":
+                                configPath = srcPath
 
                             experimentName = f"{testType}_{topModule[0]}_{tech}_{maxPower}_{maxArea}_{maxFanout}_{clkPeriod}"
                             testDict[experimentName] = genTestcase(name, experimentName, topModule[0], tech, language, srcPath, clkList, maxPower, maxArea, maxFanout, clkPeriod, extraParameters, \
