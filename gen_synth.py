@@ -65,6 +65,8 @@ def main():
                             clkList = topModule[3]
                             configPath = topModule[4]
                             packageName =  topModule[5]
+                            if not packageName: # check for empty string in definition
+                                packageName = "0" # default needs to be 0 for design compiler checking
 
                             experimentName = f"{testType}_{topModule[0]}_{tech}_{maxPower}_{maxArea}_{maxFanout}_{clkPeriod}"
                             testDict[experimentName] = genTestcase(name, experimentName, topModule[0], tech, language, srcPath, clkList, maxPower, maxArea, maxFanout, clkPeriod, extraParameters, \
