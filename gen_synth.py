@@ -10,7 +10,7 @@
 import json
 from pprint import *
 
-def genTestcase(name, experimentName, topModule, tech, language, srcPath, clkList, maxPower, maxArea, maxFanout, clkPeriod, extraParameters):
+def genTestcase(name, experimentName, topModule, tech, language, srcPath, clkList, maxPower, maxArea, maxFanout, clkPeriod, extraParameters, configPath, packageName):
     # Function to generate a dictionary for a single testcase based on inputs
     testcase = {}
     testcase["name"] = name
@@ -21,6 +21,8 @@ def genTestcase(name, experimentName, topModule, tech, language, srcPath, clkLis
     testcase["srcPath"] = srcPath
     testcase["clkSignalList"] = clkList
     testcase["extraParameters"] = extraParameters
+    testcase["configPath"] = configPath
+    testcase["packageName"] = packageName
     testcase["synthParams"] = {}
     testcase["synthParams"]["maxPower"]  = f"{maxPower}"
     testcase["synthParams"]["maxArea"]   = f"{maxArea}"
@@ -30,21 +32,27 @@ def genTestcase(name, experimentName, topModule, tech, language, srcPath, clkLis
 
 def main():
     testDict = {}
-<<<<<<< Updated upstream
-    # Format for topmodule entry: [topModule, language, pathToSrc, [clk1, clk2, ...], ...]
-    topModules = [["openMSP430", "Verilog", "./RTL/opencores-ip/core/rtl/verilog"]]
-=======
-    topModules = [["openMSP430", "Verilog", "./RTL/opencores-ip/core/rtl/verilog", ["dco_clk", "lfxt_clk"]]]
->>>>>>> Stashed changes
-    techList = ["sky130"]
-    testType = "constraintSweep"
-    powerList = [0, 100, 1000, 10000]
-    areaList = ["0", "100", "1000", "10000"]
-    fanoutList = ["0", "100", "1000", "10000"]
-    clkPeriodList = ["6000", "4000", "2000", "1000", "500", "250", "125"]
-    extraParameters = ""
-    numTests = 0
+    """USER MODIFICATION SECTION BEGIN"""
 
+    # Format for topmodule entry: [topModule, language, pathToSrc, [clk1, clk2, ...], configPath, packageName, ...]
+    topModules = [["wallypipelinedcorewrapper", "sverilog", "../cvw/src", ["clk"], "../cvw/config", "cvw.sv"]]
+    
+    techList = ["sky130"]
+    testType = "constraintSweep_wally_sweep"
+    powerList = [0]
+    areaList = ["0", "80000"]
+    fanoutList = ["0", "100"]
+    clkPeriodList = ["1000", "500", "250", "125", "50", "10", "8.0", "7.0", "6.0", "5.0", "4.0"]
+    # powerList = [0]
+    # areaList = ["0"]
+    # fanoutList = ["100"]
+    # clkPeriodList = ["1000"]
+    extraParameters = ""
+
+    """USER MODIFICATION SECTION END"""
+
+
+    numTests = 0
     for topModule in topModules:
         for tech in techList:
             for maxPower in powerList:
@@ -55,8 +63,12 @@ def main():
                             language = topModule[1]
                             srcPath = topModule[2]
                             clkList = topModule[3]
+                            configPath = topModule[4]
+                            packageName =  topModule[5]
+
                             experimentName = f"{testType}_{topModule[0]}_{tech}_{maxPower}_{maxArea}_{maxFanout}_{clkPeriod}"
-                            testDict[experimentName] = genTestcase(name, experimentName, topModule[0], tech, language, srcPath, clkList, maxPower, maxArea, maxFanout, clkPeriod, extraParameters)
+                            testDict[experimentName] = genTestcase(name, experimentName, topModule[0], tech, language, srcPath, clkList, maxPower, maxArea, maxFanout, clkPeriod, extraParameters, \
+                                                                   configPath, packageName)
                             numTests += 1
 
     # Dump json file
