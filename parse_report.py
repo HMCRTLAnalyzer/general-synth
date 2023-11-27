@@ -1,4 +1,6 @@
-#to use: change the "results_folderr" name to be the report folder you want to extract features from.
+#!/usr/bin/python3
+
+#to use: change the "results_folder" name to be the report folder you want to extract features from.
 #run file
 
 import re
@@ -6,8 +8,8 @@ import pandas
 import datetime
 import os
 
-results_folder = "fft_gen_delay_sweep_2to40ns_2023-11-05-20-36"
-results_dir = f"../general-synth/results_dir/{results_folder}"
+results_folder = "constraintSweep_openMSP430_2023-11-15-09-48"
+results_dir = f"./results_dir/{results_folder}"
 sub_dir = next(os.walk(results_dir))[1]
 
 
@@ -26,6 +28,11 @@ pattern_dict["combo_area"] = [".*Combinational Area:\s*(.*)"]
 pattern_dict["noncombo_area"] = [".*Noncombinational Area:\s*(.*)"]
 pattern_dict["design_area"] = [".*Design Area:\s*(.*)"]
 
+# cell count
+pattern_dict["cell_count"] = [".*Leaf Cell Count:\s*(.*)"]
+pattern_dict["combinational_cell_count"] = [".*Combinational Cell Count:\s*(.*)"]
+pattern_dict["seqential_cell_count"] = [".*Sequential Cell Count:\s*(.*)"]
+
 results_dict = {}
 #general info
 results_dict["name"] = []
@@ -42,6 +49,11 @@ results_dict["combo_area"] = []
 results_dict["noncombo_area"] = []
 results_dict["design_area"] = []
 
+# cell count
+results_dict["cell_count"] = []
+results_dict["combinational_cell_count"] = []
+results_dict["seqential_cell_count"] = []
+
 for experiment in sub_dir:
     qor_path = f"{results_dir}/{experiment}/report.qor"
     f = open(qor_path)
@@ -53,3 +65,4 @@ for experiment in sub_dir:
             results_dict[pattern] += [(match.group(1))]
 csv_frame = pandas.DataFrame(results_dict)
 csv_frame.to_csv(f"{results_dir}/results_{datetime.datetime.now()}.csv", index=False)
+print(f"Created CSV at {results_dir}/results_{datetime.datetime.now()}.csv")
